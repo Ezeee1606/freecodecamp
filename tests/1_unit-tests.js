@@ -16,9 +16,9 @@ suite('Unit Tests', function () {
     });
     // #3
     test('#isOk, #isNotOk', function () {
-      assert.isNotOkay(null, 'null is falsey');
-      assert.isOkay("I'm truthy", 'A string is truthy');
-      assert.isOkay(true, 'true is truthy');
+      assert.isNotOk(null, 'null is falsey');
+      assert.isOk("I'm truthy", 'A string is truthy');
+      assert.isOk(true, 'true is truthy');
     });
     // #4
     test('#isTrue, #isNotTrue', function () {
@@ -42,8 +42,8 @@ suite('Unit Tests', function () {
     test('#strictEqual, #notStrictEqual', function () {
       assert.notStrictEqual(6, '6');
       assert.strictEqual(6, 3 * 2);
-      assert.notStrictEqual(6 * '2', 12);
-      assert.notStringEqual([1, 'a', {}], [1, 'a', {}]);
+      assert.strictEqual(6 * '2', 12);
+      assert.notStrictEqual([1, 'a', {}], [1, 'a', {}]);
     });
     // #7
     test('#deepEqual, #notDeepEqual', function () {
@@ -61,28 +61,28 @@ suite('Unit Tests', function () {
   suite('Comparisons', function () {
     // #8
     test('#isAbove, #isAtMost', function () {
-      assert.isAbove('hello'.length, 5);
+      assert.isAtMost('hello'.length, 5);
       assert.isAbove(1, 0);
       assert.isAbove(Math.PI, 3);
       assert.isAtMost(1 - Math.random(), 1);
     });
     // #9
     test('#isBelow, #isAtLeast', function () {
-      assert.isBelow('world'.length, 5);
+      assert.isAtLeast('world'.length, 5);
       assert.isAtLeast(2 * Math.random(), 0);
       assert.isBelow(5 % 2, 2);
       assert.isBelow(2 / 3, 1);
     });
     // #10
     test('#approximately', function () {
-      assert.approximately(weirdNumbers(0.5), 1, 0);
-      assert.approximately(weirdNumbers(0.2), 1, 0);
+      assert.approximately(weirdNumbers(0.5), 1, 0.5);
+      assert.approximately(weirdNumbers(0.2), 1, 0.2);
     });
   });
 
   // -----------------------------------------------------------------------------
 
-  const winterMonths = ['dec,', 'jan', 'feb', 'mar'];
+  const winterMonths = ['dec', 'jan', 'feb', 'mar'];
   const backendLanguages = ['php', 'python', 'javascript', 'ruby', 'asp'];
   suite('Arrays', function () {
     // #11
@@ -145,7 +145,7 @@ suite('Unit Tests', function () {
     test('#property, #notProperty', function () {
       assert.notProperty(myCar, 'wings', "Cars don't have wings");
       assert.property(airlinePlane, 'engines', 'Planes have engines');
-      assert.propertyVal(myCar, 'wheels', 'Cars have wheels');
+      assert.property(myCar, 'wheels', 'Cars have wheels');
     });
     // #17
     test('#typeOf, #notTypeOf', function () {
